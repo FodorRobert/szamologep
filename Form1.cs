@@ -99,13 +99,49 @@ namespace test1
 
         private void button15_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            textBox1.Text = dt.Compute(textBox1.Text, "").ToString();
+            try
+            {
+
+                string expression = textBox1.Text;
+
+                expression = expression.Replace("√", "Math.Sqrt");
+
+                expression = expression.Replace("**2", "^2");
+
+                DataTable dt = new DataTable();
+
+                textBox1.Text = dt.Compute(expression, "").ToString();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt a számítás során: " + ex.Message);
+            }
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
             textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+        }
+
+        private void Button18_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + "(";
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + ")";
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + "**2";
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + "√";
         }
     }
 }
